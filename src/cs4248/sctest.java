@@ -69,21 +69,20 @@ public class sctest {
 	}
 	
 	private static double[] getFeatureArray(String tId) {
-		ArrayList<double[]> featureArrays = new ArrayList<double[]>();
 		
 		int collocatedItems = getNumCollocatedItems();
 		assert collocatedItems >= 0;
 		String[] sentence = _testCases.get(tId);
 		String[] sentenceNoStop = _testCasesNoStops.get(tId);
 			
-		double[] featureArray = new double[(1 + _vocabSet.size()) + (_vocabLookup.keySet().size() * collocatedItems)];
+		double[] featureArray = new double[(1 + _vocabSet.size()) + (_vocabLookup.keySet().size() * collocatedItems) + 1];
 			
 		for (String word : sentenceNoStop) {
 			if (isSpecialToken(word) || word.equals(PLACEHOLDER)) {
 					continue;
 			}
 			if (!_vocabLookup.containsKey(word)) {
-				System.out.println("OOV: " + word);
+				//System.out.println("OOV: " + word);
 				continue;
 			}
 			featureArray[_vocabLookup.get(word)] = 1;

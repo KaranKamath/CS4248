@@ -14,7 +14,5 @@ with open(fAns, 'r') as fa, open(fOutput, 'r') as fo:
         count = count + 1
         if ans == output[idx]:
             count_correct = count_correct + 1
-        else:
-            print 'Mismatch: ', ans, output[idx]
     
     print 'Accuracy: ', str(1.0 * count_correct / count) 

@@ -18,14 +18,14 @@ import java.util.TreeSet;
 public class sctrain {
 	private static final String STOP_WORDS_PATH = "./files/stopwd.txt";
 	private static TreeMap<String, Boolean> _stopWordsMap;
-	private static int _leftOffset = -2;
-	private static int _rightOffset = 2;
+	private static int _leftOffset = -3;
+	private static int _rightOffset = 3;
 	private static final String START_TOKEN = "<START>";
 	private static final String END_TOKEN = "<END>";
 	private static final String NULL_TOKEN = "<NULL>";
 	private static TreeSet<String> _vocabSet = new TreeSet<String>();
 	private static HashMap<String, Integer> _vocabLookup = new HashMap<String, Integer>();
-	private static final int NUM_ITERS = 500;
+	private static final int NUM_ITERS = 2000;
 	private static final double LEARNING_RATE = 0.1f;
 
 	private static void populateVocab(ArrayList<String[]> sentences) {
@@ -224,7 +224,7 @@ public class sctrain {
 			String[] trainSentence = trainSentences.get(i);
 			String[] trainSentenceNoStop = trainSentencesNoStops.get(i);
 			
-			double[] featureArray = new double[(1 + _vocabSet.size()) + (_vocabLookup.keySet().size() * collocatedItems)];
+			double[] featureArray = new double[(1 + _vocabSet.size()) + (_vocabLookup.keySet().size() * collocatedItems) + 1];
 			
 			featureArray[0] = getExClass(trainSentence, classA, classB);
 			assert featureArray[0] != -1;
