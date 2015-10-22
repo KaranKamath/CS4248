@@ -92,7 +92,7 @@ public class sctrain {
 		ArrayList<String[]> sanitizedExamples = new ArrayList<String[]>();
 		
 		for (String sentence : trainSentences) {
-			String[] words = sentence.replaceAll("[^a-zA-Z ]", "").toLowerCase().trim().split("\\s+");
+			String[] words = sentence.substring(sentence.indexOf('\t')).replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase().trim().split("\\s+");
 			String[] allWords = new String[(words.length + 2)];
 			System.arraycopy(words, 0, allWords, 1, words.length);
 			allWords[0] = START_TOKEN;
@@ -181,7 +181,7 @@ public class sctrain {
 		
 		int i = 0;
 		while (i++ < numIters) {
-			System.out.println("Running Iter " + i);
+			//System.out.println("Running Iter " + i);
 			for (double[] featureArray : featureArrays) {
 				updateWeights(initWeights, featureArray);
 			}
